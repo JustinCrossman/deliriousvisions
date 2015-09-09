@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Delirious Visions
 
 The testing fields for Justin Crossman, *Delirious Visions, LLC*
