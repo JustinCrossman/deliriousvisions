@@ -43,6 +43,25 @@ ADD nginx/config/common/common.conf /etc/nginx/conf.d/common/common.conf
 # Mapping: local supervisor config files
 ADD ["supervisord/config/supervisord.conf", "/etc/"]
 
+# 2016 02 17 - Updates for NodeJS
+RUN yum -y install wget
+RUN wget http://nodejs.org/dist/v0.12.9/node-v0.12.9-linux-x64.tar.gz
+RUN tar -xzvf node-v0.12.9-linux-x64.tar.gz
+RUN mv node-v0.12.9-linux-x64 /node
+RUN ln -s /node/bin/npm /usr/sbin/npm
+RUN ln -s /node/bin/node /usr/sbin/node
+RUN npm install -g --unsafe-perm npm
+
+# 2016 02 17 - Install Global Packages
+RUN npm install -g bower
+RUN npm install -g grunt
+RUN npm install -g karma@0.12.0
+ADD html/angularjs/package.json /var/www/html/angularjs/package.json
+ADD html/angularjs/bower.json /var/www/html/angularjs/bower.json
+RUN npm install /var/www/html/angularjs/
+RUN bower install --allow-root --force-latest /var/www/html/angularjs/
+RUN mv -f /bower_components/ /var/www/html/angularjs/bower_components/
+
 EXPOSE 80
 
 CMD ["supervisord", "-n"]
