@@ -1,5 +1,7 @@
 # Dockerfile
 
+# This Dockerfile is tandem with repo: https://github.com/JustinCrossman/deliriousvisions.git
+
 # CentOS: specific version
 FROM centos:latest
 
@@ -60,7 +62,8 @@ ADD html/angularjs/package.json /var/www/html/angularjs/package.json
 ADD html/angularjs/bower.json /var/www/html/angularjs/bower.json
 RUN npm install /var/www/html/angularjs/
 RUN bower install --allow-root --force-latest /var/www/html/angularjs/
-RUN mv -f /bower_components/ /var/www/html/angularjs/bower_components/
+# Note: following command doesn't seem to work, but no matter because bower_components is included in the repo: https://github.com/JustinCrossman/deliriousvisions.git
+#RUN mv -f /bower_components/ /var/www/html/angularjs/app/bower_components/
 
 EXPOSE 80
 
