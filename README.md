@@ -9,6 +9,7 @@ Config files are mapped to files included in: [https://github.com/JustinCrossman
 ## Installation
 
 - Install [Docker](https://www.docker.com/)
+- $ `docker pull centos:latest`
 - $ `docker pull justincrossman/deliriousvisions`
 - Install Git
 - $ `git clone https://github.com/JustinCrossman/deliriousvisions.git`
